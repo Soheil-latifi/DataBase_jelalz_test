@@ -1,0 +1,17 @@
+Alter table Buyer Add constraint chkbudget check (budget >0 )
+
+Alter table Business Add constraint chckBusinessNum check (BusinessNum >0 )
+
+
+Alter table Property Add constraint chkProperty check (Cooling >=0 and Elevator >= 0 and Heating >=0  )
+
+Alter table SaleAgreement Add constraint chkslprp check (PayedMoney >=0 )
+
+Alter table SaleAgreement Add constraint chkssdate check (Sdate >= CURDATE())
+
+
+Alter table RentAgreement Add constraint chkssdate check (Sdate >= CURDATE())
+
+
+Alter table SaleAgreement Add constraint chkssdate check (Mortage >0 and Rentestimate >0 and FamilyNum > -1 and Marriage > -1 )
+
