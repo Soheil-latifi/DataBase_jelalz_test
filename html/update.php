@@ -3,10 +3,11 @@
  
 				//	 including 
           include_once "Db_info.php";
- 			 include_once  "BorderInsert.php"; 
+			include_once "updateBorder.php"; 
           include_once "Border.php";
  			 include_once "PropertyClass.php";
-         
+ 			 include_once "BorderDelete.php";
+         	
 
 ?>
 
@@ -90,7 +91,17 @@
                                     
                                     <!-- Property-->
       		                              <?php 
-      		                              	InsertBorder::ShowSaleFormInsert();
+      		                              
+      		                              
+      		                              			
+																		if(strcmp( $_POST['submit'] , "Dubmit1" ) == 0  )
+																		{
+																			
+      		            		      		   	         	UpdateBorder::ShowSaleFormUpdate();
+      		            		      		   	      }
+      		            		      		   	      else {
+      		            		      		   	     				DeleteBorder::ShowSaleFormDelete();
+      		            		      		   	      }
       		                              ?>
       		                               
       		                              
@@ -102,8 +113,15 @@
                                 <div class="tab-pane fade" id="profile-pills">
                                     
                                      <?php 
-      		                              InsertBorder::ShowRentFormInsert();
-      		                              ?>
+                                     			
+                                    			 if(strcmp( $_POST['submit'] , "Dubmit2" ) == 0  )
+																		{
+      		                           					   UpdateBorder::ShowRentFormUpdate();
+      		                              			    } 
+      		                              			    else {
+      		                              			    	 DeleteBorder::ShowRentFormDelete();
+      		                              			    }
+      		                            ?>
                                     <!-- RENTTTTTTTTTTTTTTTT Form -->
                                    
                                     
@@ -113,7 +131,15 @@
 											 <!-- Renter form  -->                        
                                 <div class="tab-pane fade" id="messages-pills">
                                 			<?php
-                                					InsertBorder::ShowRenterFormInsert();
+                                			
+                                			
+                                    			 if(strcmp( $_POST['submit'] , "Dubmit3" ) == 0  )
+																		{
+                              				  					UpdateBorder::ShowRenterFormUpdate();
+                              				  				} 
+      		                              			    else {
+      		                              			    	 DeleteBorder::ShowRenterFormDelete();
+      		                              			    }
                                 			 ?>
                                 <!-- Renter form end -->
                                 	</div>
@@ -123,16 +149,29 @@
                               		<!--Buyer form -->     
                                 <div class="tab-pane fade " id="settings-pills">
 										       
-												<?php  
-														InsertBorder::ShowBuyerFormInsert();
-														   ?>										       
+												<?php
+													
+                                    			 if(strcmp( $_POST['submit'] , "Dubmit4" ) == 0  )
+																		{  
+																			UpdateBorder::ShowBuyerFormUpdate();
+																		}
+																		else																		
+																		DeleteBorder::ShowBuyerFormDelete();
+												?>										       
 										       <!--Buyer form end -->                 	     
                                 </div>
                                 
    										<div class="tab-pane fade " id="SaleAgreement">
 										       
 												<?php
-												 InsertBorder::ShowSaleAgreementFormInsert(); 
+												
+                                    			 if(strcmp( $_POST['submit'] , "Dubmit5" ) == 0  )
+																		{  
+													 							UpdateBorder::ShowSaleAgreementFormUpdate(); 
+																		}
+																		else {
+																				DeleteBorder::ShowSaleAgreementFormDelete();
+																			}											  
 												  ?>										       
 										       <!--Buyer form end -->                 	     
                                 </div>
@@ -141,7 +180,14 @@
    										<div class="tab-pane fade active in" id="RentAgreement">
 										       
 												<?php
-												 InsertBorder::ShowRentAgreementFormInsert(); 
+														
+																	
+                                    			 if(strcmp( $_POST['submit'] , "Dubmit6" ) == 0  )
+																		{  
+												 							UpdateBorder::ShowRentAgreementFormUpdate(); 
+																		}	
+																		else											
+																			DeleteBorder::ShowRentAgreementFormDelete();
 												  ?>										       
 										       <!--Buyer form end -->                 	     
                                 </div>
@@ -170,29 +216,25 @@
           
           
 $mysqli = new mysqli($Server, $UserName, $Password, $DBname);
-
-       $BN =  $_SESSION['BusinessNum'];
+  $BN =  $_SESSION['BusinessNum'];
 				// sale form	            
-            if($_SERVER["REQUEST_METHOD"] == "POST") {
+      if($_SERVER["REQUEST_METHOD"] == "POST") 
+      {
            
            	
-					if(strcmp( $_POST['submit'] , "Submit1" ) == 0  )
+				if(strcmp( $_POST['submit'] , "Submit1" ) == 0  )
 					{
 						  	          
             	
-        			$property = new Property($_POST['Name'] , $_POST['Sname'] ,$_POST['Phone'],
-        			$_POST['Ssn'],$_POST['Postalcode'],$_POST['Address'],
-        			$_POST['BDate'],$BN,$_POST['Meter']) ;
-        				
-        			if( ! $property->is_valid() )   			 	   			 	   			 		
-   			 					InsertBorder::ShowAlert(1) ;	
-					else{
-				// query 
-				
-							}
+        				$property = new Property($_POST['Name'] , $_POST['Sname'] ,$_POST['Phone'],
+        				$_POST['Ssn'],$_POST['Postalcode'],$_POST['Address'],
+        				$_POST['BDate'],$BN,$_POST['Meter']) ;
+        					
 			 			
-			 			}
+			 		}
 			 			
+			 			
+			 						 			
 		//                     rent property	 			
 					if(strcmp( $_POST['submit'] , "Submit2" ) == 0  )
 					{
@@ -297,7 +339,7 @@ $mysqli = new mysqli($Server, $UserName, $Password, $DBname);
             	
         			$Sdate=$_POST['Sdate'];
 					$Edate=$_POST['Edate'];
-					echo "'$Sdate' ahmad"; 
+					
 									 /*
 					$q ="select P.Ssn,P.Name , P.Sname , P.Phone , B.Budget 
  from Person P , Buyer B 

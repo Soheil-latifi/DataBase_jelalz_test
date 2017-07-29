@@ -99,6 +99,7 @@ session_start();
                     </div>
                 </div>
                 </a>
+                <a href="delete.php">
                 <div class="col-md-3 col-sm-3 col-xs-6">
                     <div class="dashboard-div-wrapper bk-clr-two">
                         <i  class="fa  fa-trash-o dashboard-div-icon" ></i>
@@ -110,7 +111,7 @@ session_start();
                          <h5>Delete </h5>
                     </div>
                 </div>
-
+				</a>
             </div>
            
             

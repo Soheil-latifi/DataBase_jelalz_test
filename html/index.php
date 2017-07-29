@@ -39,14 +39,13 @@ exit();
 }
 else
 {
-      echo $row["Username"];
+      echo '
+				<h1 style="text-align:center; color : red; " > User name or pass word Not Found Please try again</h1>';
       
 }
 }
 
 ?>
-
-
 
 <!DOCTYPE html>
 <html >

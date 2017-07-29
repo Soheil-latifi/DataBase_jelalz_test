@@ -19,21 +19,9 @@
        private  $Meter;  
        //----------------------------\\
        
-	  function __construct($par1,$par2,$par3,$par4,$par5,$par6,$par7,$par8,$par9 )  
+	  function __construct()  
 	   {
-			$this->Name= $par1;
-			$this->Sname= $par2;
-			$this->Phone = $par3;
-			$this->OwnerSsn = $par4;
-			$this->PostalCode = $par5;
-			$this->Address = $par6;
-			$this->BuildDate = $par7;
-			$this->Heating =0;
-			$this->Cooling = 0;	
-			$this->Elevator = 0;
-			$this->Note = 0;
-			$this->BusineNum = $par8;
-			$this->Meter = $par9;
+			
       }
       
 
@@ -49,6 +37,19 @@
       public function getName(){
          return $this->Name ;
       }
+      
+      
+      
+		public function setPhone($Phone_){
+         $this->Phone = $Phone_;
+          
+         
+      } 
+      public function getPhone(){
+         return $this->Phone ;
+      }      
+      
+      
       
 		public function setMeter($Meter_){
          $this->Meter = $Meter_;
@@ -181,5 +182,11 @@
       
       
 }
+
+
+       
+	  
+	  
+
 ?>
 

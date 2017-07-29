@@ -248,7 +248,7 @@ echo '
         <div class="container">
             <div class="navbar-header">
                 
-                <a class="navbar-brand" href="Admin.php">
+                <a class="navbar-brand" href="admin.php">
 
                     <img src="assets/img/logo.png" />
                 </a>

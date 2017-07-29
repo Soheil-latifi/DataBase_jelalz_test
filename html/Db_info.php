@@ -2,7 +2,7 @@
 	$Server   = "localhost"; 
 	$UserName =  "test";
 	$Password =  "test";
-	$DBname   =  "Realstate"; 
+	$DBname   =  "FinalState"; 
 	
 	
 	
