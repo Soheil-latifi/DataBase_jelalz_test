@@ -1,0 +1,32 @@
+CREATE TABLE Business(Name varchar(30) NOT NULL, Address varchar(100), Phone varchar(14), BusinessNum int  , PRIMARY KEY (BusinessNum) )
+
+
+ //  ,BusinessNum int  , FOREIGN KEY (BusinessNum) REFERENCES Business(BusinessNum) ,  
+
+Create TABLE Users(Username varchar(30) , Password varchar(30)NOT NULL , AccessLevel int default 0    , BusinessNum int not NULL, PRIMARY KEY (Username) , FOREIGN KEY (BusinessNum) REFERENCES Business(BusinessNum)   on delete cascade  on update cascade )
+
+
+Create table Person(Name varchar(30) NOT NULL , Sname varchar(30) NOT NULL , Phone varchar(30), Address varchar(300),Ssn varchar(30) , primary key (Ssn,BusinessNum),BusinessNum int  , FOREIGN KEY (BusinessNum) REFERENCES Business(BusinessNum)  )
+
+
+Create Table Renter( BusinessNum int ,Marriage int ,FamilyNum int ,  Rentestimate  int , Mortage int , Ssn varchar(30) , primary key (Ssn,BusinessNum) , foreign key (Ssn,BusinessNum) references Person(Ssn,BusinessNum)  on delete cascade on update cascade ,FOREIGN KEY (BusinessNum) REFERENCES Business(BusinessNum) on delete cascade on update cascade )
+
+
+Create Table Buyer(  Budget int  , Ssn varchar(30) not NULL , primary key (Ssn) , foreign key (Ssn) references Person(Ssn) on delete cascade  on update cascade )
+
+
+
+create Table Property(Name varchar(30) NOT NULL ,Meter int not null, Sname varchar(30) NOT NULL , Phone varchar(30) ,OwnerSsn Varchar(30)  , Postalcode varchar(30)  ,Address varchar(300)  , BuildDate date ,Heating int  , Cooling int  ,Elevator int  , Note varchar(400) default 'empty' , primary key (Postalcode ) ,BusinessNum int  , FOREIGN KEY (BusinessNum) REFERENCES Business(BusinessNum) on delete cascade on update cascade)
+
+
+create Table RentProperty(BusinessNum int not null , Mortage int, Rent int ,Postalcode varchar(30) not NULL  ,FamilyNum int, Marriagestate int  ,primary key (Postalcode, BusinessNum) , foreign key (Postalcode ) references Property(Postalcode ) on delete cascade on update cascade ,  FOREIGN KEY (BusinessNum) REFERENCES Business(BusinessNum) on delete cascade on update cascade  )
+
+
+create Table SaleProperty(BusinessNum int not null , EstimatedWorth int ,Postalcode varchar(30) not NULL ,primary key (Postalcode, BusinessNum) , foreign key (Postalcode ) references Property(Postalcode ) on delete cascade on update cascade ,  FOREIGN KEY (BusinessNum) REFERENCES Business(BusinessNum) on delete cascade on update cascade )
+
+
+
+Create TABLE RentAgreement(BusinessNum int not null ,Duration int not NULL , Sdate date not null ,  RenterSsn varchar(30),OwnerSsn varchar(30),Sname varchar(30),Name varchar(30) not Null , Phone varchar(30), Address varchar(300) not Null ,Postalcode varchar(30) not null , Mortage int , Rent int, foreign key (RenterSsn) references Person(Ssn) on delete no action on update cascade , primary key (Sdate,Postalcode,RenterSsn,OwnerSsn,BusinessNum) , FOREIGN KEY (BusinessNum) REFERENCES Business(BusinessNum) on delete cascade on update cascade )
+
+
+Create TABLE SaleAgreement(BusinessNum int not null ,  Sdate date not null ,  BuyerSsn varchar(30),OwnerSsn varchar(30),Sname varchar(30),Name varchar(30) not Null , Phone varchar(30), Address varchar(300) not Null ,Postalcode varchar(30) not null,Price int not null , foreign key (BuyerSSN) references Person(Ssn) on delete no action on update cascade , primary key (Sdate,Postalcode,BuyerSsn,,BusinessNum) , FOREIGN KEY (BusinessNum) REFERENCES Business(BusinessNum) on delete cascade on update cascade );
